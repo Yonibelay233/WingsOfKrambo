@@ -1,0 +1,85 @@
+﻿<Page x:Class="WingsOfKrambo.Pages.RegistrationWindow"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WingsOfKrambo.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RegistrationWindow">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Image Grid.Row="0" Source="/Pictures/Logo.png" Height="80" Margin="0,0,0,10"/>
+
+        <TextBlock Grid.Row="1" Text="הצטרפות למשפחת קרמבו" FontSize="20" 
+               FontWeight="Bold" Foreground="#0056A4" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="10,0">
+                <TextBlock Text="שם פרטי:" Margin="0,5" Foreground="#555"/>
+                <TextBox x:Name="txtFirstName" Height="30" Margin="0,0,0,10"/>
+
+                <TextBlock Text="שם משפחה:" Margin="0,5" Foreground="#555"/>
+                <TextBox x:Name="txtLastName" Height="30" Margin="0,0,0,10"/>
+
+                <TextBlock Text=":תעודת זהות" Margin="0,5" Foreground="#555"/>
+                <TextBox x:Name="txtRegID" Height="30" Margin="0,0,0,10"/>
+
+                <TextBlock Text="מספר טלפון:" Margin="0,5" Foreground="#555"/>
+                <TextBox x:Name="txtPhone" Height="30" Margin="0,0,0,10"/>
+
+                <TextBlock Text="עיר:" Margin="0,5" Foreground="#555"/>
+                <ComboBox x:Name="cityChooser"/>
+
+                <TextBlock Text="רחוב:" Margin="0,5" Foreground="#555"/>
+                <TextBox x:Name="txStreet" Height="30" Margin="0,0,0,10"/>
+
+                <TextBlock Text="מספר בניין:" Margin="0,5" Foreground="#555"/>
+                <TextBox x:Name="txBuildingNumber" Height="30" Margin="0,0,0,10"/>
+
+                <TextBlock Text="סניף:" Margin="0,5" Foreground="#555"/>
+                <ComboBox x:Name="branchChooser"/>
+
+     
+                
+                <TextBlock Text="תאריך לידה:" Margin="0,5" Foreground="#555"/>
+                <DatePicker x:Name="dpDateOfBirth" Height="30" Margin="0,0,0,10" SelectedDateFormat="Short"/>
+
+
+                <TextBlock Text="תפקיד בסניף:" Margin="0,5" Foreground="#555"/>
+                <ComboBox x:Name="cmbRole" Height="30" Margin="0,0,0,10">
+                    <ComboBoxItem Content="חניך/ה"/>
+                    <ComboBoxItem Content="מדריך/ה"/>
+                    <ComboBoxItem Content="ילד/ה עם צרכים מיוחדים"/>
+                    <ComboBoxItem Content="איש/ה צוות"/>
+                </ComboBox>
+
+                <StackPanel x:Name="apprentice" Visibility="Collapsed"/>
+                <TextBlock Text="כיתה:" Margin="0,5" Foreground="#555"/>
+                <ComboBox x:Name="gradeChooser"/>
+
+                <TextBlock Text="בית ספר:" Margin="0,5" Foreground="#555"/>
+                <ComboBox x:Name="schoolChooser"/>
+            
+        
+        <Button Grid.Row="3" Content="סיום הרשמה ופרישת כנפיים" 
+            Height="45" Background="#FF8C00" Foreground="White" 
+            FontWeight="Bold" FontSize="16" Margin="0,20,0,0" Click="btnFinishRegister_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="22"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>
