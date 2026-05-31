@@ -56,7 +56,8 @@ MouseLeave="btnShowPass_MouseLeave"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
                 <TextBlock Text="אין משתמש? " Foreground="#666"/>
                 <TextBlock Text="הירשם!" Foreground="#FF8C00" FontWeight="Bold" 
-                           Cursor="Hand" MouseLeftButtonDown="Register_Click" />
+                           Cursor="Hand" MouseLeftButtonDown="Register_Click"
+                           />
             </StackPanel>
         </StackPanel>
        

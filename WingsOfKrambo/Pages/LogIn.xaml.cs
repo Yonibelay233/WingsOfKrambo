@@ -108,26 +108,27 @@ namespace WingsOfKrambo.Pages // שים לב לסיומת .LogIn
             GuideTBList guideList = await apiService.GetAllGuides();
             GuideTBL g = guideList.Find(x => x.IdPerson == txtID.Password && x.FirstName == txtFirst.Text);
 
+            if (g != null)
+            {
+                NavigationService.Navigate(new HomeGuidePage1());
+            }
             ApprenticeTBList apprenticeList = await apiService.GetAllApprentices();
             ApprenticeTBL a = apprenticeList.Find(x => x.IdPerson == txtID.Password && x.FirstName == txtFirst.Text);
 
+            if (a != null)
+            {
+                NavigationService.Navigate(new HPageApprentice(a));
+            }
             StaffMemberTBList staffMemberList = await apiService.GetAllStaffMembers();
             StaffMemberTBL s = staffMemberList.Find(x => x.IdPerson == txtID.Password && x.FirstName == txtFirst.Text);
 
-            ChildWithSpecialNeedList childWithSpecialNeedList = await apiService.GetAllChildWithSpecialNeeds();
-            ChildWithSpecialNeedTBL c = childWithSpecialNeedList.Find(x => x.IdPerson == txtID.Password && x.FirstName == txtFirst.Text);
-            if (g != null)
-            {
-                NavigationService.Navigate(new HomePage());
-            }
-            if (a != null)
-            {
-                NavigationService.Navigate(new HPageApprentice());
-            }
             if (s != null)
             {
                 NavigationService.Navigate(new HomePageStaffMember());
             }
+            ChildWithSpecialNeedList childWithSpecialNeedList = await apiService.GetAllChildWithSpecialNeeds();
+            ChildWithSpecialNeedTBL c = childWithSpecialNeedList.Find(x => x.IdPerson == txtID.Password && x.FirstName == txtFirst.Text);
+            
             if (c != null)
             {
                 NavigationService.Navigate(new HomePageChildWithSpecialNeeds());

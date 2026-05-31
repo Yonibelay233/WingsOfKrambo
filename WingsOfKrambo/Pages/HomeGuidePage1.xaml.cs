@@ -13,16 +13,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WingsOfKrambo
+namespace WingsOfKrambo.Pages
 {
     /// <summary>
-    /// Interaction logic for HomePage.xaml
+    /// Interaction logic for HomeGuidePage1.xaml
     /// </summary>
-    public partial class HomePage : Page
+    public partial class HomeGuidePage1 : Page
     {
-        public HomePage()
+        public HomeGuidePage1()
         {
             InitializeComponent();
+        }
+
+        private void AttendanceReport_Click(object sender, RoutedEventArgs e)
+        {
+            // מעבר לדף שמציג את רשימת כל החניכים
+            NavigationService.Navigate(new AttendanceList());
         }
     }
 }

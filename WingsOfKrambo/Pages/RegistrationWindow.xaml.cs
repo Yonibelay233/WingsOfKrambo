@@ -67,19 +67,18 @@ namespace WingsOfKrambo.Pages
             string fName = txtFirstName.Text;
             string fLastName = txtLastName.Text;
             string fID = txtRegID.Text;
-            string fPhone = txtPhone.Text;
             CityTBL fCity = cList[cityChooser.SelectedIndex];
             BranchTBL fBranch = bList[branchChooser.SelectedIndex];
             string fBuildingNumber = txBuildingNumber.Text;
-            GradeTBL fGrade= gList[gradeChooser.SelectedIndex];
+            GradeTBL fGrade = gList[gradeChooser.SelectedIndex];
             SchoolTBL fSchool = sList[schoolChooser.SelectedIndex];
-            // חילוץ המחרוזת מה-DatePicker
+            //חילוץ המחרוזת מה - DatePicker
             string bDate = dpDateOfBirth.SelectedDate?.ToString("yyyy-MM-dd") ?? DateTime.Now.ToString("yyyy-MM-dd");
             string fStreet = txStreet.Text;
             int rows = 0;
-
-
-            if (cmbRole.SelectedItem?.ToString() == "חניך/ה")
+            var role = cmbRole.Items[cmbRole.SelectedIndex].ToString();
+            role = role.Remove(0, role.Length - 6);
+            if (role == "חניך/ה")
             {
                 apprentice.Visibility = Visibility.Visible;
 
@@ -90,7 +89,7 @@ namespace WingsOfKrambo.Pages
                     FirstName = fName,
                     LastName = fLastName,
                     City = cList[cityChooser.SelectedIndex],
-                    IdPerson =fPhone,
+                    IdPerson = txtRegID.Text,
                     DateOfBirth = DateTime.Parse(bDate),
                     Grade = gList[gradeChooser.SelectedIndex],
                     School = sList[schoolChooser.SelectedIndex],
@@ -98,67 +97,75 @@ namespace WingsOfKrambo.Pages
 
                 };
 
-                rows = await api.InsertAApprentice(a);
-                if (rows > 0)
+                int ans=await api.InsertAApprentice(a);
+
+            }
+            if (role != "חניך/ה")
+            {
+                role = role.Remove(0, role.Length - 7);
+
+                if (cmbRole.SelectedItem?.ToString() == "מדריך/ה")
                 {
+                    GuideTBL g = new GuideTBL()
+                    {
+                        BranchCode = bList[branchChooser.SelectedIndex],
+                        BuildingNumber = int.Parse(fBuildingNumber),
+                        FirstName = fName,
+                        LastName = fLastName,
+                        City = cList[cityChooser.SelectedIndex],
+                        IdPerson = txtRegID.Text,
+                        DateOfBirth = DateTime.Parse(bDate),
+                        Street = fStreet,
+
+                    };
+                    api.InsertAGuide(g);
 
                 }
-
-
-            }
-
-            if (cmbRole.SelectedItem?.ToString() == "מדריך/ה")
-            {
-                GuideTBL g = new GuideTBL()
+                if (role != "מדריך/ה")
                 {
-                    BranchCode = bList[branchChooser.SelectedIndex],
-                    BuildingNumber = int.Parse(fBuildingNumber),
-                    FirstName = fName,
-                    LastName = fLastName,
-                    City = cList[cityChooser.SelectedIndex],
-                    IdPerson = fPhone,
-                    DateOfBirth = DateTime.Parse(bDate),
-                    Street = fStreet,
+                    role = role.Remove(0, role.Length - 9);
 
-                };
-                api.InsertAGuide(g);
+                    if (cmbRole.SelectedItem?.ToString() == "איש/ה צוות")
+                    {
+                        StaffMemberTBL s = new StaffMemberTBL()
+                        {
+                            BranchCode = bList[branchChooser.SelectedIndex],
+                            BuildingNumber = int.Parse(fBuildingNumber),
+                            FirstName = fName,
+                            LastName = fLastName,
+                            City = cList[cityChooser.SelectedIndex],
+                            IdPerson = txtRegID.Text,
+                            DateOfBirth = DateTime.Parse(bDate),
+                            Street = fStreet,
 
-            }
+                        };
+                        api.InsertAStaffMember(s);
 
-            if (cmbRole.SelectedItem?.ToString() == "איש/ה צוות")
-            {
-                StaffMemberTBL s = new StaffMemberTBL()
-                {
-                    BranchCode = bList[branchChooser.SelectedIndex],
-                    BuildingNumber = int.Parse(fBuildingNumber),
-                    FirstName = fName,
-                    LastName = fLastName,
-                    City = cList[cityChooser.SelectedIndex],
-                    IdPerson = fPhone,
-                    DateOfBirth = DateTime.Parse(bDate),
-                    Street = fStreet,
+                    }
+                    if (role != "איש/ה צוות")
+                    {
+                        role = role.Remove(0, role.Length - 19);
 
-                };
-                api.InsertAStaffMember(s);
+                        if (cmbRole.SelectedItem?.ToString() == "ילד/ה עם צרכים מיוחדים")
+                        {
+                            ChildWithSpecialNeedTBL c = new ChildWithSpecialNeedTBL()
+                            {
+                                BranchCode = bList[branchChooser.SelectedIndex],
+                                BuildingNumber = int.Parse(fBuildingNumber),
+                                FirstName = fName,
+                                LastName = fLastName,
+                                City = cList[cityChooser.SelectedIndex],
+                                IdPerson = txtRegID.Text,
+                                DateOfBirth = DateTime.Parse(bDate),
+                                School = sList[schoolChooser.SelectedIndex],
+                                Street = fStreet,
 
-            }
+                            };
+                            api.InsertAChildWithSpecialNeed(c);
 
-            if (cmbRole.SelectedItem?.ToString() == "ילד/ה עם צרכים מיוחדים")
-            {
-               ChildWithSpecialNeedTBL c = new ChildWithSpecialNeedTBL()
-                {
-                    BranchCode = bList[branchChooser.SelectedIndex],
-                    BuildingNumber = int.Parse(fBuildingNumber),
-                    FirstName = fName,
-                    LastName = fLastName,
-                    City = cList[cityChooser.SelectedIndex],
-                    IdPerson = fPhone,
-                    DateOfBirth = DateTime.Parse(bDate),
-                   School = sList[schoolChooser.SelectedIndex],
-                   Street = fStreet,
-
-                };
-                api.InsertAChildWithSpecialNeed(c);
+                        }
+                    }
+                }
 
             }
 

@@ -32,9 +32,6 @@
                 <TextBlock Text=":תעודת זהות" Margin="0,5" Foreground="#555"/>
                 <TextBox x:Name="txtRegID" Height="30" Margin="0,0,0,10"/>
 
-                <TextBlock Text="מספר טלפון:" Margin="0,5" Foreground="#555"/>
-                <TextBox x:Name="txtPhone" Height="30" Margin="0,0,0,10"/>
-
                 <TextBlock Text="עיר:" Margin="0,5" Foreground="#555"/>
                 <ComboBox x:Name="cityChooser"/>
 

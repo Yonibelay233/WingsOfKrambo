@@ -16,14 +16,14 @@
 
         <Border Grid.Row="0" Background="#FF8C00">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="20,0">
-                <TextBlock Text="שלום, חניך!" Foreground="White" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="0,0,10,0"/>
+                <TextBlock x:Name="lblWelcome" Text="!שלום, חניך" Foreground="White" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="0,0,10,0"/>
                 <Image Source="/Pictures/Logo.png" Height="60"/>
             </StackPanel>
         </Border>
 
         <UniformGrid Grid.Row="1" Columns="2" Margin="30">
 
-            <Button Margin="10" Background="White" BorderBrush="#FF8C00" BorderThickness="2">
+            <Button Margin="10" Background="White" BorderBrush="#FF8C00" BorderThickness="2" Click="OpenActions">
                 <StackPanel>
                     <TextBlock Text="📅" FontSize="40" HorizontalAlignment="Center"/>
                     <TextBlock Text="הפעילויות שלי" FontSize="18" FontWeight="Bold" Foreground="#FF8C00" HorizontalAlignment="Center"/>
@@ -37,9 +37,11 @@
                 </StackPanel>
             </Button>
 
-            <Button Margin="10" Background="White" BorderBrush="#0056A4" BorderThickness="2">
+            <Button x:Name="BtnUploadImages" 
+                Click="BtnUploadImages_Click"
+                Margin="10" Background="White" BorderBrush="#0056A4" BorderThickness="2">
                 <StackPanel>
-                    <TextBlock Text="📸" FontSize="40" HorizontalAlignment="Center"/>
+                    <TextBlock Text="📷" FontSize="40" HorizontalAlignment="Center"/>
                     <TextBlock Text="תמונות מהפעולה" FontSize="18" FontWeight="Bold" Foreground="#0056A4" HorizontalAlignment="Center"/>
                 </StackPanel>
             </Button>
